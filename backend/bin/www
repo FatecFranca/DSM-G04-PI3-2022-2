@@ -26,7 +26,7 @@ const server = http.createServer(app)
  */
 connectToMongo()
   .then(() => {
-    console.log('** 🚅 Mongoose concetado ao servidor remoto 🚅 **')
+    console.log('** 🚅 Mongoose conectado ao servidor remoto 🚅 **')
     server.listen(port)
     server.on('error', onError)
     server.on('listening', onListening)
