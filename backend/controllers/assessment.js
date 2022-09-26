@@ -88,4 +88,40 @@ controller.delete = async (req, res) => {
   }
 }
 
+controller.createAnswer = async (req, res) => {
+  try {
+    // Pega o id do assessment por meio do parâmetro :assessment_id colocado na route
+    const { assessment_id } = req.params
+    const answer = req.body
+    const assessment = await Assessment.findById(assessment_id)
+    if (!assessment) {
+      return res.status(404).send({
+        message: 'Avaliação não encontrada',
+      })
+    }
+    // Verifica se answers é um array, se for, ele não faz nada
+    // se não for um array, ele transforma .answers em um array
+    assessment.answers = Array.isArray(assessment.answers) ? assessment.answers : []
+    
+    // verifica se o a answer já existe no array de answers
+    const answerAlreadyExists = assessment.answers.find(a => a.question === answer.question)
+    // se a answer já existe, vamos atualizar ela com o novo valor
+    if (answerAlreadyExists) {
+      // atualiza a answer se ela já existir com os novos dados passados
+      answerAlreadyExists = {
+        ...answerAlreadyExists,
+        ...answer
+      }
+    } else {
+      // adiciona a answer no array de answers se ela não existir
+      assessment.answers.push(answer)
+    }
+
+    const result = await assessment.save()
+    return res.status(200).send(result)
+  } catch (error) {
+    return res.status(500).send(error)
+  }
+}
+
 module.exports = controller
