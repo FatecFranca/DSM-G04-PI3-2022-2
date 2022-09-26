@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/question');
+const controller = require('../../controllers/criterion');
 
 router.post('/', controller.create);
 router.get('/', controller.retrieveAll);

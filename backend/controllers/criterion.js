@@ -4,9 +4,9 @@ const controller = {}   // Objeto vazio
 
 controller.create = async (req, res) => {
     try {
-        await Criterion.create(req.body)
+        const result = await Criterion.create(req.body)
         // HTTP 201: Created
-        res.status(201).end()
+        res.status(201).send(result)
     }
     catch(error) {
         console.error(error)
@@ -48,10 +48,10 @@ controller.retrieveOne = async (req, res) => {
 
 controller.update = async (req, res) => {
     try {
-        const result = await Criterion.findByIdAndUpdate(req.params.id, req.body)
+        const result = await Criterion.findByIdAndUpdate(req.params.id, req.body, {returnDocument: 'after'})
 
         // HTTP 204: No content
-        if(result) return res.status(204).end() // Encontrou e atualizou
+        if(result) return res.status(200).send(result) // Encontrou e atualizou
         else res.status(404).end()      // Não encontrou
     }
     catch(error) {

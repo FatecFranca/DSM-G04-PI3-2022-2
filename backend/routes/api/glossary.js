@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/glossary');
+const controller = require('../../controllers/glossary');
 
 router.post('/', controller.create);
 router.get('/', controller.retrieveAll);

@@ -14,9 +14,9 @@ const controller ={} //objeto vazio
 
 controller.create = async(req, res)=>{
     try{
-        await User.create(req.body)
+        const result = await User.create(req.body)
         //HTTP 201: Created 
-        res.status(201).end()
+        res.status(201).send(result)
     }
     catch(error){
         console.error(error)
@@ -57,7 +57,7 @@ controller.retrieveOne = async (req, res)=>{
 
 controller.update = async(req, res)=>{
     try{
-        const result = await User.findByIdAndUpdate(req.params.id, req.body)
+        const result = await User.findByIdAndUpdate(req.params.id, req.body, {returnDocument: 'after'})
 
         //HTTP 204: No content
         if(result) return res.status(204).end() // Encontrou e atualizou 
