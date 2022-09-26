@@ -1,12 +1,6 @@
 const mongoose = require('mongoose')
 
 const schema = mongoose.Schema({
-    // Campo de chave estrangeira para o model User
-    assessment: {
-        type: mongoose.ObjectId, // Tipo especial
-        ref: 'Assessment',    // Coleção referenciada
-        required: true
-    },
     question: {
         type: mongoose.ObjectId, // Tipo especial
         ref: 'Question',    // Coleção referenciada
