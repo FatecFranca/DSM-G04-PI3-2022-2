@@ -12,7 +12,7 @@ router.delete('/:id', controller.delete);
  *  Rotas para answer
  */
 router.post('/:assessment_id/answer', controller.createAnswer);
-//router.get('/:assessment_id/answer', controller.retrieveAllAnswer);
+router.get('/:assessment_id/answer', controller.retrieveAllAnswer);
 
 
 module.exports = router;
