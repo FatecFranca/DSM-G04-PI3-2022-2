@@ -1,6 +1,11 @@
 const mongoose = require('mongoose')
 
 const schema = mongoose.Schema({
+    question: {
+        type: mongoose.ObjectId, // Tipo especial
+        ref: 'Question',        // Coleção referenciada
+        required: false,
+    },
     entry: {
         type: String,
         required: true
