@@ -1,4 +1,5 @@
 const Assessment = require('../models/Assessment')
+const Answer = require('../models/Answer')
 
 const controller = {} // Objeto vazio
 
@@ -88,6 +89,10 @@ controller.delete = async (req, res) => {
   }
 }
 
+/*******************************************************************
+ * Métodos para o model Answer
+*/
+
 controller.createAnswer = async (req, res) => {
   try {
     // Pega o id do assessment por meio do parâmetro :assessment_id colocado na route
@@ -138,5 +143,44 @@ controller.retrieveAllAnswers = async(req, res)=>{
     res.status(500).send(error) 
   }
 }
+
+controller.updateAnswer = async(req, res)=>{
+  try {
+    const answerData = req.body
+    const answerId = req.params.id
+    const assessmentId = req.params.assessment_id
+    const assessment = await Assessment.findById(assessmentId)
+    const answer = assessment.answers.find(answer=>answer.id===answerId)
+
+    if (!assessment) {
+      // HTTP 404: Not Found
+      return res.status(404).send({
+        message: 'Avaliação não encontrada',
+      })
+    }
+    if (!answer) {
+      // HTTP 404: Not Found
+      return res.status(404).send({
+        message: 'Resposta não encontrada',
+      })
+    }
+    const result = await Answer.findByIdAndUpdate(answerId, answerData,{
+      returnDocument:"after"
+    })
+    if (!result) {
+      // HTTP 404: Not Found
+      return res.status(404).send({
+        message: 'Resposta não encontrada',
+      })
+    }
+    // Encontrou e atualizou
+    return res.status(200).send(result)
+  } catch (error) {
+    console.error(error)
+    // HTTP 500: Internal Server Error
+    return res.status(500).send(error)
+  }
+}
+
 
 module.exports = controller
