@@ -1,28 +1,26 @@
 const mongoose = require('mongoose')
 
 const schema = mongoose.Schema({
-    // Campo de chave estrangeira para o model Criterion
-    criterion: {
-        type: mongoose.ObjectId, // Tipo especial
-        ref: 'Criterion',    // Coleção referenciada
-        required: true
+  // Campo de chave estrangeira para o model Criterion
+  criterion: {
+    type: mongoose.ObjectId, // Tipo especial
+    ref: 'Criterion', // Coleção referenciada
+    required: true,
+  },
+  order: {
+    type: Number,
+    required: true,
+  },
+  enunciation: {
+    type: String,
+    required: true,
+  },
+  glossary_refs: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Glossary',
     },
-    order: {
-        type: Number,
-        required: true
-    },
-    enunciation: {
-        type: String,
-        required: true
-    },
-    glossary_refs:[
-        {
-            glossary_ref:{
-                type: mongoose.Schema.ObjectId,
-                ref:"Glossary"
-            }
-        }
-    ],
+  ],
 })
 
 /*
