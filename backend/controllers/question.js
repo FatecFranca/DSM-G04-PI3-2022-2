@@ -1,23 +1,32 @@
-const { default: mongoose } = require('mongoose')
 const Question = require('../models/Question')
-
+const Glossary = require('../models/Glossary')
+const helpers = require('../helpers')
+const { NotFoundError } = require('../helpers/errors')
 const controller = {} // Objeto vazio
 
-function toObjectId(string) {
-  return new mongoose.Types.ObjectId(string)
+async function glossaryExists(id) {
+  const glossaryExists = await Glossary.findOne({ _id: helpers.toObjectId(id) })
+  console.log('glossaryExists', glossaryExists);
+  return !!glossaryExists
 }
-
-function handleGlossaryRefs(glossaryRefs) {
+async function handleGlossaryRefs(glossaryRefs) {
   if (!Array.isArray(glossaryRefs)) {
     return []
   }
-  return glossaryRefs.map(toObjectId)
+  return await Promise.all( glossaryRefs.map(
+    async (glossaryRefId) => {
+      if(!(await glossaryExists(glossaryRefId))) {
+        throw new NotFoundError('glossary_ref', `id ${glossaryRefId} is invalid, there's no glossary with this id in database`)
+      }
+      return helpers.toObjectId(glossaryRefId)
+    }
+  ))
 }
 
 controller.create = async (req, res) => {
   try {
     const questionData = req.body
-    questionData.glossary_refs = handleGlossaryRefs(questionData.glossary_refs)
+    questionData.glossary_refs = await handleGlossaryRefs(questionData.glossary_refs)
 
     await Question.create(questionData)
     // HTTP 201: Created
@@ -25,7 +34,8 @@ controller.create = async (req, res) => {
   } catch (error) {
     console.error(error)
     // HTTP 500: Internal Server Error
-    res.status(500).send(error)
+    const statusCode = error.statusCode || 500
+    res.status(statusCode).send(error)
   }
 }
 
@@ -39,7 +49,8 @@ controller.retrieveAll = async (req, res) => {
   } catch (error) {
     console.error(error)
     // HTTP 500: Internal Server Error
-    res.status(500).send(error)
+    const statusCode = error.statusCode || 500
+    res.status(statusCode).send(error)
   }
 }
 
@@ -54,24 +65,26 @@ controller.retrieveOne = async (req, res) => {
   } catch (error) {
     console.error(error)
     // HTTP 500: Internal Server Error
-    res.status(500).send(error)
+    const statusCode = error.statusCode || 500
+    res.status(statusCode).send(error)
   }
 }
 
 controller.update = async (req, res) => {
   try {
     const questionData = req.body
-    questionData.glossary_refs = handleGlossaryRefs(questionData.glossary_refs)
+    questionData.glossary_refs = await handleGlossaryRefs(questionData.glossary_refs)
 
-    const result = await Question.findByIdAndUpdate(req.params.id, questionData)
+    const result = await Question.findByIdAndUpdate(req.params.id, questionData, { returnDocument: 'after', })
 
     // HTTP 204: No content
-    if (result) return res.status(204).end() // Encontrou e atualizou
+    if (result) return res.status(200).send(result) // Encontrou e atualizou
     else res.status(404).end() // Não encontrou
   } catch (error) {
     console.error(error)
     // HTTP 500: Internal Server Error
-    res.status(500).send(error)
+    const statusCode = error.statusCode || 500
+    res.status(statusCode).send(error)
   }
 }
 
@@ -85,7 +98,8 @@ controller.delete = async (req, res) => {
   } catch (error) {
     console.error(error)
     // HTTP 500: Internal Server Error
-    res.status(500).send(error)
+    const statusCode = error.statusCode || 500
+    res.status(statusCode).send(error)
   }
 }
 

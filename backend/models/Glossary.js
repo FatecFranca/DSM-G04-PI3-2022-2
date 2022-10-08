@@ -4,7 +4,7 @@ const schema = mongoose.Schema({
     question: {
         type: mongoose.ObjectId, // Tipo especial
         ref: 'Question',        // Coleção referenciada
-        required: true
+        required: false,
     },
     entry: {
         type: String,
