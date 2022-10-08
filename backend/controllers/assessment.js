@@ -135,19 +135,36 @@ controller.createAnswer = async (req, res) => {
   }
 }
 
+// controller.retrieveAllAnswers = async (req, res) => {
+//   try {
+//     const assessment = await Assessment.findById(
+//       req.params.assessment.id
+//     )//.populate('answers', { path: 'question' })
+//     // HTTP 200: OK (implícito)
+//     if (assessment) res.send(assessment.answer)
+//     // HTTP 404: Not found
+//     else res.status(404).end()
+//   } catch (error) {
+//     console.error(error)
+//     //HTTP 500: Internal Server Erro
+//     res.status(500).send(error)
+//   }
+// }
+
 controller.retrieveAllAnswers = async (req, res) => {
   try {
-    const assessment = await Assessment.findById(
-      req.params.assessment.id
-    ).populate('answers', { path: 'question' })
-    // HTTP 200: OK (implícito)
-    if (assessment) res.send(assessment.answer)
-    // HTTP 404: Not found
-    else res.status(404).end()
-  } catch (error) {
-    console.error(error)
-    //HTTP 500: Internal Server Erro
-    res.status(500).send(error)
+      const assessment = await Assessment.findById(req.params.assessment_id)
+      //.populate({ path: 'answers', populate: { path: 'question' } })
+      console.log(assessment)
+      // HTTP 200: OK (implícito)
+      if (assessment) res.status(200).send(assessment.answers)
+      // HTTP 404: Not Found
+      else res.status(404).end()
+  }
+  catch (error) {
+      console.error(error)
+      // HTTP 500: Internal Server Error
+      res.status(500).send(error)
   }
 }
 

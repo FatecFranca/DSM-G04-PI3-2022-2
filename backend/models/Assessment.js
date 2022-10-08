@@ -27,7 +27,7 @@ const schema = mongoose.Schema({
         type: Date
     },
     answers: [{
-        type: mongoose.ObjectId,
+        type: Object,
         ref: 'Answer'
     }]
 })
