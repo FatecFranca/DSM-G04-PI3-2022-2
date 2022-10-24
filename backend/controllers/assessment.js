@@ -170,41 +170,65 @@ controller.retrieveAllAnswers = async (req, res) => {
 
 controller.updateAnswer = async (req, res) => {
   try {
-    const answerData = req.body
-    const answerId = req.params.id
-    const assessmentId = req.params.assessment_id
-    const assessment = await Assessment.findById(assessmentId)
-    const answer = assessment.answers.find(answer => answer.id === answerId)
+      const assessment = await Assessment.findById(req.params.assessment_id)
+      const assessmentAnswer = assessment.answers.id(req.params.id)
+      if (assessment && assessmentAnswer) {
+          // Atualiza os campos da resposta
+          assessmentAnswer.question = req.body.question
+          assessmentAnswer.answer = req.body.answer
+          assessmentAnswer.comment = req.body.comment
+          assessmentAnswer.answered_at = req.body.answered_at
 
-    if (!assessment) {
-      // HTTP 404: Not Found
-      return res.status(404).send({
-        message: 'Avaliação não encontrada',
-      })
-    }
-    if (!answer) {
-      // HTTP 404: Not Found
-      return res.status(404).send({
-        message: 'Resposta não encontrada',
-      })
-    }
-    const result = await Answer.findByIdAndUpdate(answerId, answerData, {
-      returnDocument: 'after',
-    })
-    if (!result) {
-      // HTTP 404: Not Found
-      return res.status(404).send({
-        message: 'Resposta não encontrada',
-      })
-    }
-    // Encontrou e atualizou
-    return res.status(200).send(result)
-  } catch (error) {
-    console.error(error)
-    // HTTP 500: Internal Server Error
-    return res.status(500).send(error)
+          await assessment.save()
+
+          // HTTP 204: No content
+          res.status(200).send()
+      }
+
+  } catch {
+      onsole.error(error)
+      // HTTP 500: Internal Server Error
+      res.status(500).send(error)
   }
 }
+
+// controller.updateAnswer = async (req, res) => {
+//   try {
+//     const answerData = req.body
+//     const answerId = req.params.id
+//     const assessmentId = req.params.assessment_id
+//     const assessment = await Assessment.findById(assessmentId)
+//     const answer = assessment.answers.find(answer => answer.id === answerId)
+
+//     if (!assessment) {
+//       // HTTP 404: Not Found
+//       return res.status(404).send({
+//         message: 'Avaliação não encontrada',
+//       })
+//     }
+//     if (!answer) {
+//       // HTTP 404: Not Found
+//       return res.status(404).send({
+//         message: 'Resposta não encontrada',
+//       })
+//     }
+//     const result = await Answer.findByIdAndUpdate(answerId, answerData, {
+//       returnDocument: 'after',
+//     })
+//     if (!result) {
+//       // HTTP 404: Not Found
+//       return res.status(404).send({
+//         message: 'Resposta não encontrada',
+//       })
+//     }
+//     // Encontrou e atualizou
+//     return res.status(200).send(result)
+//   } catch (error) {
+//     console.error(error)
+//     // HTTP 500: Internal Server Error
+//     return res.status(500).send(error)
+//   }
+// }
 
 controller.deleteAnswer = async (req, res) => {
   try {
