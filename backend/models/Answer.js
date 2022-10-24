@@ -4,7 +4,8 @@ const schema = mongoose.Schema({
     question: {
         type: mongoose.ObjectId, // Tipo especial
         ref: 'Question',    // Coleção referenciada
-        required: true
+        required: true,
+        index: true
     },
     answer: {
         type: String,
