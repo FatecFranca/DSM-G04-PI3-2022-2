@@ -1,11 +1,13 @@
 const mongoose = require('mongoose')
+const Answer = require('./Answer')
 
 const schema = mongoose.Schema({
     // Campo de chave estrangeira para o model User
     user: {
         type: mongoose.ObjectId, // Tipo especial
         ref: 'User',    // Coleção referenciada
-        required: true
+        required: true,
+        index: true
     },
     name: {
         type: String,
@@ -21,15 +23,13 @@ const schema = mongoose.Schema({
     created_at: {
         type: Date,
         required: true,
-        default: Date.now() // Data/hora atual
+        default: Date.now(), // Data/hora atual
+        index: true
     },
     finished_at: {
         type: Date
     },
-    answers: [{
-        type: Object,
-        ref: 'Answer'
-    }]
+    answers: [Answer]
 })
 
 /*
