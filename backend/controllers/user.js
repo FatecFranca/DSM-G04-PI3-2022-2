@@ -15,6 +15,7 @@ const controller ={} //objeto vazio
 controller.create = async(req, res)=>{
     try{
         const result = await User.create(req.body)
+        delete result.password_hash
         //HTTP 201: Created 
         res.status(201).send(result)
     }
