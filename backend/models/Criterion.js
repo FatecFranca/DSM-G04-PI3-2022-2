@@ -1,26 +1,24 @@
 const mongoose = require('mongoose')
 
 const schema = mongoose.Schema({
-    order:{
+    order: {
         type: Number,
-        require: true
+        required: true
     },
     name: {
         type: String,
         required: true
     },
     description: {
-        type: String
-    },
+        type: String,
+        required: true
+    }
 })
 
 /*
     Parâmetros de mongoose.model:
-    1º: o nome do model, para uso interno. Por convenção,
-        usa-se Inicial Maiúscula.
-    2º: a relação de campos do esquema (variável schema)
-    3º: o nome da collection no banco de dados (normalmente,
-        é o mesmo nome do model, mas pluralizado e com
-        inicial minúscula)
+    1º - Nome da model, para uso interno (convenção: primeira letra maiúscula e singular)
+    2º - Relação de campos do esquema (schema)
+    3º - Nome da collection no banco de dados (convenção: mesmo nome da model com letra inicial minúsculas e plural)
 */
 module.exports = mongoose.model('Criterion', schema, 'criterions')
