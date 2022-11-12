@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../../controllers/criterion');
-const { authenticate } = require('../../middlewares/authenticationMiddelware');
+const { authenticate } = require('../../middlewares/authenticationMiddleware');
 const onlyAdmin = authenticate({ onlyAdmin: true });
 const onlyUser = authenticate({ onlyAdmin: false });
 

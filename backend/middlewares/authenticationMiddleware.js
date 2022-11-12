@@ -27,7 +27,7 @@ exports.authenticate = ({ onlyAdmin = false }) => {
       req.user = userExists
       next()
     } catch (error) {
-      return res.status(401).json({ message: 'Token inválido' })
+      return unauthorized(res, 'Token inválido')
     }
   }
 }

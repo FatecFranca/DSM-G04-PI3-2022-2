@@ -30,13 +30,12 @@ controller.login = async (req, res) => {
     if (!passwordIsValid) {
       return unauthorized(res, 'Senha ou email inválida')
     }
-
+    delete user.password_hash
     const tokenGenerator = new TokenGeneratorService()
     const accessToken = tokenGenerator.generateToken({
       id: user._id,
-      is_admin: user.is_admin,
     })
-    return ok(res, { accessToken })
+    return ok(res, { accessToken, ...user._doc })
   } catch (error) {
     return serverError(res, error)
   }
