@@ -42,7 +42,7 @@ controller.create = async (req, res) => {
       email: user.email,
       is_admin: user.is_admin || false,
       name: user.name,
-      password_hash: user.password_hash,
+      password_hash: user.password,
     })
     
     delete result.password_hash
