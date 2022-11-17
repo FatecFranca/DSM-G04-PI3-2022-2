@@ -38,7 +38,13 @@ controller.create = async (req, res) => {
       return badRequest(res, 'E-mail já cadastrado')
     }
 
-    const result = await User.create(user)
+    const result = await User.create({
+      email: user.email,
+      is_admin: user.is_admin || false,
+      name: user.name,
+      password_hash: user.password,
+    })
+    
     delete result.password_hash
     //HTTP 201: Created
     res.status(201).send(result)
