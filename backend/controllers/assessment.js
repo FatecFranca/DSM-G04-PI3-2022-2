@@ -90,8 +90,8 @@ controller.createAnswer = async (req, res) => {
         if(assessment) {
             // 2) Verifica se o campo "answers" já existe na avaliação
             if(assessment.answers) {
-
-                // 2.1) Verifica se uma resposta para a pergunta
+                const teste = assessment.answers[0]
+                // 2.1) Verifica se há uma resposta para a pergunta
                 // especificada já existe no vetor
                 const idx = assessment.answers.findIndex(a => a.question.toString() === req.body.question)
                 console.log({idx})
@@ -107,7 +107,7 @@ controller.createAnswer = async (req, res) => {
             else {
                 // Cria o vetor "answers" com o primeiro elemento
                 assessment.answers = []
-                assessment.answers.push(req.body.id)
+                assessment.answers.push(req.body)
             }
 
             // Atualiza assessment
