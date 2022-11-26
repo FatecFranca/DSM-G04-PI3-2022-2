@@ -5,7 +5,9 @@ const controller = {}   // Objeto vazio
 
 controller.create = async (req, res) => {
     try {
-        const assessment = await Assessment.create(req.body)
+        const assessmentData = req.body
+        assessmentData.user = req.user._id
+        const assessment = await Assessment.create(assessmentData)
         // HTTP 201: Created
         res.status(201).send(assessment)
     }
