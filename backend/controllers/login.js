@@ -35,7 +35,13 @@ controller.login = async (req, res) => {
     const accessToken = tokenGenerator.generateToken({
       id: user._id,
     })
-    return ok(res, { accessToken, ...user._doc })
+    return ok(res, {
+      _id: user._id,
+      accessToken,
+      name: user.name,
+      email: user.email,
+      is_admin: user.is_admin,
+    })
   } catch (error) {
     return serverError(res, error)
   }
