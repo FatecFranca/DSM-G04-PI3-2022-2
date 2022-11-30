@@ -1,0 +1,16 @@
+ion-header {
+
+  ion-toolbar {
+    --background: var(--azul);
+
+    ion-title {
+      text-align: center;
+      color: white;
+    }
+  }
+}
+
+#content {
+  --background: var(--cinza-escuro);
+
+}
