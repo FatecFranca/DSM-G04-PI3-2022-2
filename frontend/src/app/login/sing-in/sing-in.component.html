@@ -1,0 +1,34 @@
+<div class="inputs1">
+  <form [formGroup]="formulario">
+    <div class="teste3">
+
+      <div class="fomularioMail">
+        <div class="inputCenter">
+          <input placeholder="SeuEmail@email.com" formControlName="email">
+        </div>
+        <div class="validacao"
+          *ngIf="formulario.get('email')?.errors?.['required'] && formulario.get('email')?.touched">
+          Email obrigatório
+        </div>
+        <div class="validacao" *ngIf="formulario.get('email')?.errors?.['email'] && formulario.get('email')?.touched">
+          Email Invalido
+        </div>
+
+      </div>
+
+      <div class="fomularioSenha">
+        <div class="inputCenter">
+          <input formControlName="senha" type="password" placeholder="Digite sua senha">
+        </div>
+        <div class="validacao"
+          *ngIf="formulario.get('senha')?.errors?.['required'] && formulario.get('senha')?.touched">
+          senha obrigatório
+        </div>
+      </div>
+
+    </div>
+    <div class="button">
+      <button mat-button id="button" (click)="logar()" [disabled]="!formulario.valid">Entrar</button>
+    </div>
+  </form>
+</div>
