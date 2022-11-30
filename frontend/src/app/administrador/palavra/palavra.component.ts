@@ -2,6 +2,7 @@ import { ContaService } from 'src/app/services/conta.service';
 import { AdministradorService } from './../administrador.service';
 import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { HomeService } from 'src/app/services/home.service';
 
 @Component({
   selector: 'app-palavra',
@@ -14,14 +15,22 @@ export class PalavraComponent implements OnInit {
   tokem: any
   descricao: string = ''
   liberaBotao: boolean = true
+  liberarGlossario: boolean = false
+  glossarioPalavra: any
+  palavrasOn: boolean = true
+  selecao!: string
 
   constructor(
     private adminService: AdministradorService,
-    private contaService: ContaService
+    private contaService: ContaService,
+    private homeService: HomeService
+
   ) { }
 
   ngOnInit() {
     this.tokem = window.localStorage.getItem('tokem')
+
+    this.getGlossario()
   }
 
   pegaPalavra() {
@@ -57,8 +66,27 @@ export class PalavraComponent implements OnInit {
         this.entry = ''
         this.descricao = ''
       }
-
-
     )
   }
+
+
+  async getGlossario() {
+
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Authorization': this.tokem }),
+    }
+
+    let resposta
+    resposta = await this.homeService.getGlossaio(httpOptions)
+    this.glossarioPalavra = resposta
+  }
+
+  liberarPalavras(){
+    this.liberarGlossario = true
+  }
+
+  esconderPalavras(){
+    this.liberarGlossario = false
+  }
+
 }

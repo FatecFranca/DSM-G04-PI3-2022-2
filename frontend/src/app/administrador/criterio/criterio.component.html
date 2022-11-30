@@ -1,3 +1,5 @@
+
+<ion-content id="content">
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -7,7 +9,26 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content id="content">
+<div class="header">
+  <div *ngIf="liberarGlossario === true" class="accordion">
+    <ion-accordion-group *ngFor="let criterio of glossarioCriterio" value="{{criterio.value}}" expand="inset">
+      <ion-accordion>
+        <ion-item slot="header" color="secondary">
+          <ion-label>{{criterio.name}}</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          {{criterio.description}}
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+  </div>
+
+</div>
+<div class="botoes">
+  <ion-button *ngIf="liberarGlossario === false"  (click)="liberarPalavras()" color="primary" expand="block">Vizualizar critérios cadastrados</ion-button>
+  <ion-button *ngIf="liberarGlossario === true " (click)="esconderPalavras()" color="danger"expand="block">Fechar</ion-button>
+</div>
+
   <div class="container">
     <h1>Critério</h1>
 
