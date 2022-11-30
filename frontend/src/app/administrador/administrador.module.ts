@@ -3,8 +3,10 @@ import { PalavraComponent } from './palavra/palavra.component';
 import { CriterioComponent } from './criterio/criterio.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field'
+
 
 import { IonicModule } from '@ionic/angular';
 
@@ -18,7 +20,9 @@ import { AdministradorPage } from './administrador.page';
     FormsModule,
     IonicModule,
     AdministradorPageRoutingModule,
-    MatSelectModule
+    MatSelectModule,
+    MatFormFieldModule,
+    ReactiveFormsModule
   ],
   declarations: [AdministradorPage, CriterioComponent, PalavraComponent, PerguntaComponent]
 })
