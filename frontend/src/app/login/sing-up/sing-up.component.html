@@ -1,0 +1,53 @@
+<div class="inputs1">
+  <form [formGroup]="formulario">
+    <div class="teste3">
+
+      <div class="fomularioMail">
+        <div class="inputCenter">
+          <input placeholder="Nome completo" formControlName="name">
+        </div>
+        <div class="validacao" *ngIf="formulario.get('name')?.errors?.['required'] && formulario.get('name')?.touched">
+          Nome obrigatório
+        </div>
+      </div>
+
+      <div class="fomularioMail">
+        <div class="inputCenter">
+          <input placeholder="SeuEmail@email.com" formControlName="email">
+        </div>
+        <div class="validacao"
+          *ngIf="formulario.get('email')?.errors?.['required'] && formulario.get('email')?.touched">
+          Email obrigatório
+        </div>
+        <div class="validacao" *ngIf="formulario.get('email')?.errors?.['email'] && formulario.get('email')?.touched">
+          Digite um email valido
+        </div>
+      </div>
+
+      <div class="fomularioSenha">
+        <div class="inputCenter">
+          <input formControlName="password" type="password" placeholder="Digite sua senha">
+        </div>
+        <div class="validacao"
+          *ngIf="formulario.get('password')?.errors?.['required'] && formulario.get('password')?.touched">
+          senha obrigatório
+        </div>
+      </div>
+
+      <div class="fomularioSenha">
+        <div class="inputCenter">
+          <input formControlName="password_confirmation" type="password" placeholder="Repita a sua senha">
+        </div>
+        <div class="validacao"
+          *ngIf="formulario.get('password_confirmation')?.errors?.['required'] && formulario.get('password_confirmation')?.touched">
+          senha obrigatório
+        </div>
+      </div>
+
+      <div class="button">
+        <button mat-button id="button" (click)="getRegister()" [disabled]="!formulario.valid">Cadastrar</button>
+      </div>
+
+    </div>
+  </form>
+</div>
