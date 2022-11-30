@@ -1,0 +1,39 @@
+<ion-content>
+  <div class="teste">
+    <div class="body">
+
+      <div class="header">
+        <h1>Relatorio da avaliacao</h1>
+      </div>
+      <hr>
+    </div>
+
+    <div id="content">
+
+      <div class="avaliacao">
+        <h1>Avaliador: {{user}}</h1>
+        <h2>Titulo da avaliação: {{nome}} </h2>
+        <h2>URL do produto avaliado: {{url}} </h2>
+        <h2>Descrição da avaliação: {{descricao}} </h2>
+        <h2>Data da criação: {{data | date : 'dd/MM/yyyy'}} </h2>
+      </div>
+
+      <ion-accordion-group *ngFor="let res of respostas; index as i" expand="inset">
+        <ion-accordion>
+          <ion-item slot="header" color="secondary">
+            <ion-label>Questão {{i + 1}}</ion-label>
+          </ion-item>
+          <div class="ion-padding" slot="content">
+            <h3>Pergunta : {{questions[i]}}</h3>
+            <h3>Resposta: {{res.answer}}</h3>
+            <h3>Comentário: {{res.comment}}</h3>
+          </div>
+        </ion-accordion>
+      </ion-accordion-group>
+
+      <ion-button expand="block" (click)="irParaMenu()">Voltar ao Menu</ion-button>
+      <ion-button expand="block" color="danger" (click)="excluirAvaliacao()">Excluir Avaliação</ion-button>
+
+    </div>
+  </div>
+</ion-content>
