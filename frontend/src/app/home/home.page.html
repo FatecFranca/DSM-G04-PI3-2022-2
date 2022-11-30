@@ -1,0 +1,29 @@
+<ion-app>
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-content>
+        <ion-list id="inbox-list">
+          <ion-list-header><img src="../../assets/do-utilizador.png" alt=""></ion-list-header>
+          <h3 id="user">{{user}}</h3>
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false"
+              routerLinkActive="selected">
+              <ion-label>{{ p.title }}</ion-label>
+              <img src="{{p.icon}}" alt="">
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+
+        <ion-list (click)="logOut()">
+          <ion-item class="logOut">
+            <ion-label>Sair</ion-label>
+            <img src="../../assets/logout.png" alt="">
+          </ion-item>
+        </ion-list>
+
+
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet class="teste" id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>
