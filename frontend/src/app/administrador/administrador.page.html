@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>ADMINISTRADOR</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="content">
+
+  <div>
+    <ion-card (click)="irParaCriterio()">
+      <div class="img"><img alt="Silhouette of mountains" src="./../assets/teste.png" />
+      </div>
+      <ion-card-header>
+        <ion-card-title>Criterios</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <ion-card routerLink="palavra">
+      <div class="img"> <img alt="Silhouette of mountains" src="../../assets/dictionary (1).png" />
+      </div>
+      <ion-card-header>
+        <ion-card-title>Palavras</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <ion-card disabled="true"outerLink="pergunta">
+      <div class="img"> <img alt="Silhouette of mountains" src="../../assets/assignment.png" />
+      </div>
+      <ion-card-header>
+        <ion-card-title>Perguntas</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  </div>
+
+  <div class="logOut">
+    <img (click)="logOut()" src="../../assets/logout.png" alt="">
+  </div>
+
+</ion-content>
