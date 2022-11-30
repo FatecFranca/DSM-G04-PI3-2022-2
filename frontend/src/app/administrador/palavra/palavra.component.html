@@ -1,3 +1,4 @@
+<ion-content id="content" >
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -8,8 +9,27 @@
 </ion-header>
 
 
+<div class="header">
+  <div *ngIf="liberarGlossario === true" class="accordion">
+    <ion-accordion-group *ngFor="let glossario of glossarioPalavra" value="{{glossario.value}}" expand="inset">
+      <ion-accordion>
+        <ion-item slot="header" color="secondary">
+          <ion-label>{{glossario.entry}}</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          {{glossario.description}}
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+  </div>
 
-<ion-content id="content">
+</div>
+<div class="botoes">
+  <ion-button *ngIf="liberarGlossario === false"  (click)="liberarPalavras()" color="primary" expand="block">Vizualizar glossários cadastrados</ion-button>
+  <ion-button *ngIf="liberarGlossario === true " (click)="esconderPalavras()" color="danger"expand="block">Fechar</ion-button>
+</div>
+
+
   <div class="container">
     <h1>Glossário</h1>
 
@@ -25,7 +45,8 @@
 
 
     <div>
-      <ion-button [disabled]="liberaBotao" (click)="criarCriterio()" expand="block">Criar Palavra no Glossário</ion-button>
+      <ion-button [disabled]="liberaBotao" (click)="criarCriterio()" expand="block">Criar Palavra no Glossário
+      </ion-button>
     </div>
     <p></p>
   </div>

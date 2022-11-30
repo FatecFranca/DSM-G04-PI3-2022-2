@@ -1,5 +1,5 @@
 ion-header {
-
+  margin-bottom: 30px;
   ion-toolbar {
     --background: var(--azul);
 
@@ -7,6 +7,27 @@ ion-header {
       text-align: center;
       color: white;
     }
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+
+  .accordion{
+    width: 80%;
+  }
+
+}
+
+.botoes{
+  display: flex;
+  justify-content: center;
+  background-color: #2C2C2C;
+
+
+  ion-button{
+    width: 80%;
   }
 }
 
