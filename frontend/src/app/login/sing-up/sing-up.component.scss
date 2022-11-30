@@ -1,0 +1,94 @@
+.inputs1 {
+  display: flex;
+  justify-content: center;
+
+  form {
+    width: 100%;
+  }
+
+  .button {
+    display: flex;
+    justify-content: center;
+
+    #button {
+      background-color: #004075;
+      color: white;
+      width: 85%;
+      height: 50px;
+      font-size: 1.5em;
+      margin-top: 35px;
+      font-family: var(--font-Principal);
+      border-radius: 10px;
+
+    }
+  }
+
+
+  .teste3 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .fomularioMail {
+      width: 100%;
+      font-family: var(--font-Principal);
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+      margin-top: 15px;
+
+      .inputCenter {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        input {
+          width: 85%;
+          border: none;
+          height: 50px;
+        }
+      }
+    }
+
+    .fomularioSenha {
+      width: 100%;
+      font-family: var(--font-Principal);
+      display: flex;
+      flex-direction: column;
+      margin-top: 15px;
+      margin-bottom: 15px;
+
+      .inputCenter {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        input {
+          width: 85%;
+          border: none;
+          height: 50px;
+        }
+      }
+    }
+
+
+
+    .validacao {
+      color: rgb(139, 1, 1);
+      margin-top: 5px;
+      margin-left: 65%;
+      margin-bottom: -15px;
+      font-family: var(--font-Principal);
+    }
+
+
+    input {
+      font-size: large;
+      font-family: var(--font-Principal);
+      width: 95%;
+      height: 40px;
+      border: none;
+      padding-left: 5%;
+    }
+  }
+}
