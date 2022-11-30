@@ -1,0 +1,47 @@
+<div class="body">
+  <div class="container" *ngIf="progresso < 100">
+
+    <div class="topo" *ngFor="let item of controleOBJ">
+
+      <div id="titulos">
+        <h1>Questionário</h1>
+        <h2>{{item.criterion.name}}</h2>
+      </div>
+
+      <div id="teste">
+        <mat-progress-bar class="barra" mode="determinate" value={{progresso.toString()}}></mat-progress-bar>
+      </div>
+
+    </div>
+
+    <div id="conteudoPai" *ngFor="let item of controleOBJ">
+      <div class="conteudo">
+        <p>{{item.enunciation}}</p>
+      </div>
+    </div>
+
+    <div class="comentario">
+      <textarea class="input" [(ngModel)]="comentario"></textarea>
+    </div>
+
+    <div class="botoes">
+      <button (click)="respostaNao()" id="botaoVermelho">Não</button>
+      <button (click)="respostaNA()" id="botaoCinza">NA</button>
+      <button (click)="respostaSim()" id="botaoVerde">Sim</button>
+    </div>
+  </div>
+
+  <div class="container2" *ngIf="progresso > 99">
+    <h1>Avaliação finalizada</h1>
+    <div>
+      <img src="../../../assets/verifica.png" alt="">
+    </div>
+
+    <div class="buttons2">
+      <ion-button expand="block" (click)="irParaRelatorio()" color="primary">Ver relatório</ion-button>
+      <ion-button expand="block" (click)="irParaAvaliacao()" color="primary">Realizar outra avaliação</ion-button>
+      <ion-button expand="block" (click)="irParaMenu()" color="primary">Voltar ao menu</ion-button>
+    </div>
+
+  </div>
+</div>

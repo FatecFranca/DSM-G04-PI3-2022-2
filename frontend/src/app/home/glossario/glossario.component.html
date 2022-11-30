@@ -1,0 +1,52 @@
+<ion-content [fullscreen]="true" class="ion-padding">
+
+<div id="content">
+
+  <div class="topo">
+
+    <div class="header">
+      <h1>Glossario</h1>
+
+      <mat-form-field appearance="fill">
+        <mat-label>{{selecao}}</mat-label>
+        <mat-select disableRipple>
+          <mat-option (onSelectionChange)="palavras()">Palavras</mat-option>
+          <mat-option (onSelectionChange)="citerios()">Critério</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <hr>
+  </div>
+
+    <div *ngIf="palavrasOn === true && criteriosOn === false">
+      <ion-accordion-group *ngFor="let glossario of glossarioPalavra" value="{{glossario.value}}" expand="inset">
+        <ion-accordion>
+          <ion-item slot="header" color="secondary">
+            <ion-label>{{glossario.entry}}</ion-label>
+          </ion-item>
+          <div class="ion-padding" slot="content">
+            {{glossario.description}}
+          </div>
+        </ion-accordion>
+      </ion-accordion-group>
+    </div>
+
+
+
+
+  <div class="texto" *ngIf="criteriosOn === true && palavrasOn === false">
+      <ion-accordion-group *ngFor="let criterio of glossarioCriterio" value="{{criterio.value}}" expand="inset">
+        <ion-accordion>
+          <ion-item slot="header" color="secondary">
+            <ion-label>{{criterio.name}}</ion-label>
+          </ion-item>
+          <div class="ion-padding" slot="content">
+            {{criterio.description}}
+          </div>
+        </ion-accordion>
+      </ion-accordion-group>
+  </div>
+</div>
+</ion-content>
+
