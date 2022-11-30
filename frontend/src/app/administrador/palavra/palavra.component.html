@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="administrador"></ion-back-button>
+    </ion-buttons>
+    <ion-title>PALAVRAS DO GLOSSÁRIO</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content id="content">
+  <div class="container">
+    <h1>Glossário</h1>
+
+    <div class="inputCenter">
+      <ion-input [(ngModel)]="entry" (ionChange)="pegaPalavra()" type="text" placeholder="Nome da palavra"></ion-input>
+    </div>
+
+
+    <div class="inputCenter">
+      <ion-input [(ngModel)]="descricao" (ionChange)="pegaDescricao()" type="text" placeholder="Descricao da palavra">
+      </ion-input>
+    </div>
+
+
+    <div>
+      <ion-button [disabled]="liberaBotao" (click)="criarCriterio()" expand="block">Criar Palavra no Glossário</ion-button>
+    </div>
+    <p></p>
+  </div>
+</ion-content>
