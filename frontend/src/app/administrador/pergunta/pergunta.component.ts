@@ -20,8 +20,10 @@ export class PerguntaComponent implements OnInit {
   palavras: any
   glossarioId: any
   arrayGloss: Array<any> = []
+  arrayGloss2: Array<any> = []
   perguntas: any
-  liberaBotao: boolean = false
+  liberaBotao: boolean = true
+  tamanhoPerguntas: number = 0
   botaoAdd: boolean = false
   select!: FormControl
   perguntaNg: any
@@ -45,12 +47,15 @@ export class PerguntaComponent implements OnInit {
 
   }
 
-
   criarPergunta(){
-    this.arrayGloss = this.select.value
 
-    for (const i of this.select.value) {
-      this.arrayGloss = i._id
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Authorization': this.tokem }),
+    }
+
+     this.arrayGloss = this.select.value
+     for (const i of this.arrayGloss) {
+        this.arrayGloss2.push(`${i._id}`)
     }
 
     let question
@@ -58,13 +63,18 @@ export class PerguntaComponent implements OnInit {
       criterion: this.criterio,
       order: this.ordem,
       enunciation: this.perguntaNg,
-      glossary_refs: this.arrayGloss
+      glossary_refs: this.arrayGloss2
     }
 
-    console.log(question);
-
-
-
+    this.adminService.inserirPergunta(httpOptions, question).then(
+      (res) => {
+        this.contaService.showMensage('Pergunta cadastrada com sucesso')
+        this.perguntaNg = ''
+        this.ordem = 0
+        this.criterio = ''
+        
+       }
+    ),(error: any) => {this.contaService.showMensageError('Ops, algo deu errado')}
   }
 
   async getPerguntas() {
@@ -76,7 +86,8 @@ export class PerguntaComponent implements OnInit {
     let resposta
     resposta = await this.homeService.getPerguntas(httpOptions)
     this.perguntas = resposta
-    console.log(this.perguntas,'perguntasss');
+    console.log(this.perguntas.length,'perguntasss');
+    this.tamanhoPerguntas = this.perguntas.length
 
   }
   pegaCriterio(e: any){
@@ -127,7 +138,7 @@ export class PerguntaComponent implements OnInit {
   }
 
   verficar() {
-    if (this.perguntaNg == '' || this.ordem == null) {
+    if (this.perguntaNg == '' || this.ordem == null || this.criterio === '') {
       this.liberaBotao = true
       return
     } this.liberaBotao = false
