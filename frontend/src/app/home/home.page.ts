@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class HomePage implements OnInit {
   public appPages = [
     { title: 'Home', url: 'dashboard', icon: '../../assets/house.png' },
-    { title: 'Glossario', url: 'glossario', icon: '../../assets/dictionary (1).png' },
+    { title: 'Glóssario', url: 'glossario', icon: '../../assets/dictionary (1).png' },
     { title: 'Avaliação', url: 'criaAvaliacao', icon: '../../assets/assignment.png' },
 
   ];
