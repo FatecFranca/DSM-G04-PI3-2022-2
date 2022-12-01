@@ -30,7 +30,7 @@ export class RelatorioAvaliacaoComponent implements OnInit {
     private router: Router,
     private loadingCtrl: LoadingController,
     private alertController: AlertController,
-    private contaService : ContaService
+    private contaService : ContaService,
 
 
   ) { }
@@ -47,8 +47,10 @@ export class RelatorioAvaliacaoComponent implements OnInit {
   }
 
   async getavaliacaoId() {
+    this.homeService.showLoading('Carregando relatório')
     this.homeService.getAvaliacaoId(this.idAvaliacao, this.httpOptions).then(
       async (res) => {
+        this.loadingCtrl.dismiss()
         this.avaliacaoID = await res
         this.nome = this.avaliacaoID.name
         this.url = this.avaliacaoID.object

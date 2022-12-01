@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from 'src/app/services/home.service';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-realiza-avalicao',
@@ -29,6 +30,7 @@ export class RealizaAvalicaoComponent implements OnInit {
     private contaService: ContaService,
     private router: Router,
     private novaRota: ActivatedRoute,
+    private loadingCtrl: LoadingController
 
   ) { }
 
@@ -44,7 +46,9 @@ export class RealizaAvalicaoComponent implements OnInit {
   }
   //******************************************************************************************************************
   async getPerguntas() {
+    this.homeService.showLoading('Procurando perguntas...')
     await this.homeService.getPerguntas(this.httpOptions).then(async (res) => {
+      this.loadingCtrl.dismiss()
       this.perguntas = await res;
 
       this.perguntasTamanho = this.perguntas.length;
@@ -91,7 +95,7 @@ export class RealizaAvalicaoComponent implements OnInit {
       .then((res) => {
       }),
       (erro: Error) => {
-        // this.contaService.ToastError(erro.message);
+
       };
 
     this.next();
