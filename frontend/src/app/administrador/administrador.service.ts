@@ -20,5 +20,9 @@ export class AdministradorService {
     return lastValueFrom(this.http.post(`${API}/glossary`, body, header))
   }
 
+  inserirPergunta(header: any, body: any) {
+    return lastValueFrom(this.http.post(`${API}/question`, body, header))
+  }
+
 
 }

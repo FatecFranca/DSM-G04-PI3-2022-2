@@ -13,4 +13,206 @@ ion-header {
 #content {
   --background: var(--cinza-escuro);
 
+  .according {
+    padding: 0px 140px 0px 140px;
+  }
+
+  .botoes {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+
+    ion-button {
+      width: 80%;
+    }
+  }
+
+  .container {
+    background-color: #3C3C3C;
+    padding: 40px;
+    height: 70vh;
+    width: 80%;
+    border-radius: 20px;
+    margin-top: 5%;
+
+    .colMain{
+      display: flex;
+      justify-content: space-around;
+
+      ion-grid{
+
+        ion-row{
+
+          ion-col{
+            color: #fff;
+            text-align: center;
+
+            mat-form-field{
+             width: 280px;
+             margin-left: -10px;
+            }
+          }
+        }
+      }
+    }
+
+    .glossario {
+      display: flex;
+
+      .botaoAdd {
+        display: flex;
+        justify-content: flex-end;
+
+        img {
+          width: 40px;
+          height: 40px;
+          margin-left: 10px;
+        }
+      }
+
+      img:hover {
+        cursor: pointer;
+      }
+    }
+
+    h1 {
+      text-align: center;
+      color: white;
+      font-size: 2em;
+      margin-bottom: 30px;
+    }
+
+    .inputCenter {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+
+      ion-input {
+        width: 100%;
+        height: 40px;
+        border: none;
+        text-align: center;
+        background-color: #2C2C2C;
+        border-radius: 12px;
+        color: white;
+        font-size: 1.3em;
+      }
+    }
+
+    ion-button {
+      --background: #3C7141;
+      margin-top: 30px;
+    }
+  }
+}
+
+
+@media (max-width: 1400px){
+  ion-header {
+
+    ion-toolbar {
+      --background: var(--azul);
+
+      ion-title {
+        text-align: center;
+        color: white;
+      }
+    }
+  }
+
+  #content {
+    --background: var(--cinza-escuro);
+
+    .according {
+      padding: 0px 140px 0px 140px;
+    }
+
+    .botoes {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+
+      ion-button {
+        width: 80%;
+      }
+    }
+
+    .container {
+      background-color: #3C3C3C;
+      padding: 40px;
+      height: 60vh;
+      width: 80%;
+      border-radius: 20px;
+      margin-top: 5%;
+
+      .colMain{
+        display: flex;
+        justify-content: space-around;
+
+        ion-grid{
+
+          ion-row{
+
+            ion-col{
+              color: #fff;
+              text-align: center;
+
+              mat-form-field{
+               width: 280px;
+               margin-left: -10px;
+              }
+            }
+          }
+        }
+      }
+
+      .glossario {
+        display: flex;
+
+        .botaoAdd {
+          display: flex;
+          justify-content: flex-end;
+
+          img {
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+          }
+        }
+
+        img:hover {
+          cursor: pointer;
+        }
+      }
+
+      h1 {
+        text-align: center;
+        color: white;
+        font-size: 2em;
+        margin-bottom: 30px;
+      }
+
+      .inputCenter {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+
+        ion-input {
+          width: 100%;
+          height: 40px;
+          border: none;
+          text-align: center;
+          background-color: #2C2C2C;
+          border-radius: 12px;
+          color: white;
+          font-size: 1.3em;
+        }
+      }
+
+      ion-button {
+        --background: #3C7141;
+        margin-top: 30px;
+      }
+    }
+  }
 }
