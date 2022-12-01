@@ -1,9 +1,9 @@
 ion-content {
-  background-color:  var(--cinza-escuro);
+  --background: #2c2c2c;
 
   #content {
     padding: 40px;
-
+    background-color: #2c2c2c;
     .topo {
 
       div.header {
@@ -13,10 +13,12 @@ ion-content {
 
         h1 {
           color: #E8E8E8;
-          font-family: var(--font-Principal);
           align-self: flex-end;
+          font-family: 'K2D', sans-serif;
         }
-
+        mat-label{
+          font-family: 'K2D', sans-serif;
+        }
       }
 
       hr {
@@ -27,35 +29,13 @@ ion-content {
 
       ion-label {
         color: white;
+        font-family: 'K2D', sans-serif;
       }
     }
 
-    .texto {
-      margin-top: 50px;
+    ion-label{
+      font-family: 'K2D', sans-serif;
 
-      ion-card {
-        margin-bottom: 30px;
-        background: #3C3C3C;
-
-        ion-card-header {
-
-          ion-card-title {
-            color: white;
-
-            span {
-              width: 300px;
-            }
-          }
-        }
-
-        ion-card-content {
-
-          ion-card-content {
-            color: white;
-          }
-        }
-
-      }
     }
   }
 }
@@ -81,7 +61,7 @@ ion-content {
 
         h1 {
           color: #E8E8E8;
-          font-family: var(--font-Principal);
+          font-family: 'K2D', sans-serif;
         }
       }
 

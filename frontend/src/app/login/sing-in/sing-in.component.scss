@@ -17,7 +17,7 @@
       height: 50px;
       font-size: 1.5em;
       margin-top: 35px;
-      font-family: var(--font-Principal);
+      font-family: 'K2D', sans-serif;
       border-radius: 10px;
 
     }
@@ -31,7 +31,7 @@
 
     .fomularioMail {
       width: 100%;
-      font-family: var(--font-Principal);
+      font-family: 'K2D', sans-serif;
       display: flex;
       flex-direction: column;
       margin-bottom: 30px;
@@ -52,7 +52,7 @@
 
     .fomularioSenha {
       width: 100%;
-      font-family: var(--font-Principal);
+      font-family: 'K2D', sans-serif;
       display: flex;
       flex-direction: column;
 
@@ -79,12 +79,12 @@
       margin-top: 5px;
       margin-left: 65%;
       margin-bottom: -15px;
-      font-family: var(--font-Principal);
+      font-family: 'K2D', sans-serif;
     }
 
     input {
       font-size: large;
-      font-family: var(--font-Principal);
+      font-family: 'K2D', sans-serif;
       width: 95%;
       height: 40px;
       border: none;
