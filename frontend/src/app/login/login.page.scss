@@ -1,26 +1,26 @@
 #container {
   display: flex;
   height: 100%;
-  font-family: var(--font-Principal);
+  font-family: 'K2D', sans-serif;
 
   div#col1 {
     width: 35%;
     height: 100%;
-    background-color: var(--azul);
-    font-family: var(--font-Principal);
+    background-color: #277BC0;
+    font-family: 'K2D', sans-serif;
     top: 0;
 
 
     .content {
       height: 85%;
-      background-color: var(--azul);
+      background-color: #277BC0;
 
       margin-bottom: -20px;
 
       h1 {
         color: aliceblue;
         text-align: center;
-        font-family: var(--font-Principal);
+        font-family: 'K2D', sans-serif;
         font-size: 3em;
         margin-bottom: 40px;
         margin-top: 40px;
@@ -34,7 +34,7 @@
 
         ion-button {
           width: 42%;
-          font-family: var(--font-Principal);
+          font-family: 'K2D', sans-serif;
           color: white;
 
           .active {
@@ -65,8 +65,8 @@
   div#col5 {
     width: 63.2%;
     height: 100vh;
-    background-color: var(--cinza-escuro);
-    font-family: var(--font-Principal);
+    background-color: #2c2c2c;
+    font-family: 'K2D', sans-serif;
 
     .logo{
       display: flex;
@@ -102,26 +102,26 @@
   #container {
     display: flex;
     height: 100%;
-    font-family: var(--font-Principal);
+    font-family: 'K2D', sans-serif;
 
     div#col1 {
       width: 35%;
       height: 100%;
-      background-color: var(--azul);
-      font-family: var(--font-Principal);
+      background-color: #277BC0;
+      font-family: 'K2D', sans-serif;
       top: 0;
 
 
       .content {
         height: 85%;
-        background-color: var(--azul);
+        background-color: #277BC0;
 
         margin-bottom: -20px;
 
         h1 {
           color: aliceblue;
           text-align: center;
-          font-family: var(--font-Principal);
+          font-family: 'K2D', sans-serif;
           font-size: 3em;
           margin-bottom: 40px;
           margin-top: 40px;
@@ -135,7 +135,7 @@
 
           ion-button {
             width: 42%;
-            font-family: var(--font-Principal);
+            font-family: 'K2D', sans-serif;
             color: white;
 
             .active {
@@ -166,8 +166,8 @@
     div#col5 {
       width: 63.2%;
       height: 100vh;
-      background-color: var(--cinza-escuro);
-      font-family: var(--font-Principal);
+      background-color: #2c2c2c;
+      font-family: 'K2D', sans-serif;
 
       .logo{
         display: flex;
@@ -214,14 +214,14 @@
 
       .content {
         height: 85%;
-        background-color: var(--azul);
+        background-color: #277BC0;
 
         margin-bottom: -20px;
 
         h1 {
           color: aliceblue;
           text-align: center;
-          font-family: var(--font-Principal);
+          font-family: 'K2D', sans-serif;
           font-size: 3em;
           margin-bottom: 40px;
           margin-top: 40px;
@@ -236,7 +236,7 @@
 
           ion-button {
             width: 42%;
-            font-family: var(--font-Principal);
+            font-family: 'K2D', sans-serif;
             color: white;
 
             .active {

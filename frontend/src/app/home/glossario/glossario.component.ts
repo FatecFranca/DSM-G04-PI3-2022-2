@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { LoadingController } from '@ionic/angular';
 import { HomeService } from 'src/app/services/home.service';
 
 @Component({
@@ -19,7 +20,9 @@ export class GlossarioComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private homeService: HomeService
+    private homeService: HomeService,
+    private loadingCtrl: LoadingController
+
   ) { this.palavras() }
 
   ngOnInit(): void {
@@ -32,14 +35,29 @@ export class GlossarioComponent implements OnInit {
   }
 
   async getGlossario() {
+    this.homeService.showLoading('Carregando Glossário...')
     let resposta
-    resposta = await this.homeService.getGlossaio(this.httpOptions)
+    await this.homeService.getGlossaio(this.httpOptions).then(
+      (res)=>{
+        this.loadingCtrl.dismiss()
+        resposta = res
+        
+      }
+    )
     this.glossarioPalavra = resposta
   }
 
   async getCriterio() {
+   
+
     let resposta
-    resposta = await this.homeService.getCriterios(this.httpOptions)
+    await this.homeService.getCriterios(this.httpOptions).then(
+      (res)=>{
+
+        resposta = res
+        
+      })
+      
     this.glossarioCriterio = resposta
   }
 

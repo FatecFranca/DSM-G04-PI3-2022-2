@@ -1,7 +1,7 @@
 ion-header {
   margin-bottom: 30px;
   ion-toolbar {
-    --background: var(--azul);
+    --background: #277BC0;
 
     ion-title {
       text-align: center;
@@ -32,7 +32,7 @@ ion-header {
 }
 
 #content {
-  --background: var(--cinza-escuro);
+  --background: #2c2c2c;
 
   .container {
     background-color: #3C3C3C;

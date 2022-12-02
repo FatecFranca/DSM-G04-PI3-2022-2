@@ -2,6 +2,8 @@ import { ContaService } from './../../services/conta.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { HomeService } from 'src/app/services/home.service';
+import { LoadingController } from '@ionic/angular';
 
 
 @Component({
@@ -16,7 +18,10 @@ export class SingInComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private route: Router,
-    private contaService: ContaService
+    private contaService: ContaService,
+    private homeService: HomeService,
+    private loadingCtrl: LoadingController
+
   ) {
     localStorage.clear()
   }
@@ -29,6 +34,7 @@ export class SingInComponent implements OnInit {
   }
 
   async logar() {
+    this.homeService.showLoading('Entrando...')
     let user = {
       email: this.formulario.value.email,
       password: this.formulario.value.senha,
@@ -38,9 +44,11 @@ export class SingInComponent implements OnInit {
 
     await this.contaService.login(user).then(
       async (res) => {
+        this.loadingCtrl.dismiss()
         resposta = await res
 
       }, (error) => {
+        this.loadingCtrl.dismiss()
         this.contaService.showMensageError(error.error.message)
       }
     )

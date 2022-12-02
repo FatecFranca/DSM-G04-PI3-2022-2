@@ -2,6 +2,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ContaService } from 'src/app/services/conta.service';
 import { Router } from '@angular/router';
+import { HomeService } from 'src/app/services/home.service';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-sing-up',
@@ -15,7 +17,10 @@ export class SingUpComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private contaService: ContaService,
-    private router: Router
+    private router: Router,
+    private homeService: HomeService,
+    private loadingCtrl: LoadingController
+
   ) { }
 
   ngOnInit(): void {
@@ -29,6 +34,8 @@ export class SingUpComponent implements OnInit {
   }
   async getRegister() {
 
+    await this.homeService.showLoading('Aguarde, cadastrando...')
+
     let account = {
       name: this.formulario.value.name,
       email: this.formulario.value.email,
@@ -39,8 +46,9 @@ export class SingUpComponent implements OnInit {
 
     let resposta
     await this.contaService.register(account).then(
-      async (res) => { resposta = await res },
+      async (res) => { resposta = await res, this.loadingCtrl.dismiss() },
       (error) => {
+        this.loadingCtrl.dismiss()
         this.contaService.showMensageError(error.error.message)
 
       }
