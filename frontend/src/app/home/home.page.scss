@@ -69,6 +69,29 @@ ion-menu {
       }
     }
 
+    ion-list{
+      background: var(--ion-item-background, var(--ion-background-color, #277BC0));
+      font-family: 'K2D', sans-serif;
+      border : none;
+      box-shadow: none;
+      list-style: none;
+      ion-item{
+        --background: #277BC0;
+        font-family: 'K2D', sans-serif;
+        border : none;
+        box-shadow: none;
+
+        ion-label{
+          color: white;
+          --background: #277BC0;
+          font-family: 'K2D', sans-serif;
+          border : none;
+          box-shadow: none;
+
+        }
+      }
+    }
+
     ion-list {
       ion-label {
         color: #277BC0;
@@ -105,6 +128,10 @@ ion-list {
   img {
     width: 40px;
   }
+}
+
+ion-label{
+
 }
 
 

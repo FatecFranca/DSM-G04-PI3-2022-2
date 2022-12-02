@@ -15,7 +15,7 @@ export class RealizaAvalicaoComponent implements OnInit {
   httpOptions: any;
   perguntas: any;
   index: number = 0;
-  progresso: number = 100;
+  progresso: number = 0;
   calculo!: number;
   comentario: string = '';
   coment: boolean = false;
