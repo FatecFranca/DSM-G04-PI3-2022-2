@@ -1,0 +1,64 @@
+
+<ion-content id="content">
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="administrador"></ion-back-button>
+    </ion-buttons>
+    <ion-title>CRITÉRIOS</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<div class="header">
+  <div *ngIf="liberarGlossario === true" class="accordion">
+    <ion-accordion-group *ngFor="let criterio of glossarioCriterio" value="{{criterio.value}}" expand="inset">
+      <ion-accordion>
+        <ion-item slot="header" color="secondary">
+          <ion-label>{{criterio.name}}</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          {{criterio.description}}
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+  </div>
+
+</div>
+<div class="botoes">
+  <ion-button *ngIf="liberarGlossario === false"  (click)="liberarPalavras()" color="primary" expand="block">Vizualizar critérios cadastrados</ion-button>
+  <ion-button *ngIf="liberarGlossario === true " (click)="esconderPalavras()" color="danger"expand="block">Fechar</ion-button>
+</div>
+
+  <div class="container">
+    <h1>Critério</h1>
+
+    <!-- <div class="inputCenter">
+      <ion-input  [(ngModel)]="ordem" (ionChange)="pegaOrdem()" type="number"  placeholder="Ordem do critério (N)"></ion-input>
+    </div> -->
+
+
+    <mat-form-field appearance="fill">
+      <mat-label>Selecione a ordem do Critério</mat-label>
+      <mat-select disableRipple>
+        <mat-option *ngFor="let n of ordemCriterios" value="{{n}}" (click)="pegaOrdem(n)">{{n}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="inputCenter">
+      <ion-input [(ngModel)]="criterio" (ionChange)="pegaPalavra()" type="text" placeholder="Nome do critério">
+      </ion-input>
+    </div>
+
+
+    <div class="inputCenter">
+      <ion-input [(ngModel)]="descricao" (ionChange)="pegaDescricao()" type="text" placeholder="Descrição do critério">
+      </ion-input>
+    </div>
+
+
+    <div>
+      <ion-button [disabled]="liberaBotao" (click)="criarCriterio()" expand="block">Criar Critério </ion-button>
+    </div>
+    <p></p>
+  </div>
+</ion-content>

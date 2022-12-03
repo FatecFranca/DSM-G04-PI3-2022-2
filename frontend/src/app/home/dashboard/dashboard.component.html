@@ -1,0 +1,36 @@
+<div id="conteudo">
+
+  <div class="topo">
+    <h1>Home</h1>
+    <hr>
+  </div>
+
+
+  <div class="avaliacoes" *ngIf="avaliacaoVazia === false">
+    <ion-card *ngFor="let avaliacao of avaliacaoAll" (click)="irParaRelatorio(avaliacao._id)">
+      <ion-header>
+        <ion-title>Avaliação: {{avaliacao.name}}</ion-title>
+      </ion-header>
+
+      <ion-card-content>
+        <p>Descrição: {{avaliacao.description}}</p>
+        <p>URL: <a href="{{avaliacao.object}}">{{avaliacao.object}}</a></p>
+        <p>Avaliador: {{user}}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+
+  <div class="cards" *ngIf="avaliacaoVazia === true">
+    <ion-card>
+      <ion-header>
+        <ion-title>Parece que você não tem nenhuma avaliação :(</ion-title>
+      </ion-header>
+
+      <ion-card-content>
+        <ion-button (click)="toAvaliacao()" expand="block"> Fazer avaliação agora</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+</div>

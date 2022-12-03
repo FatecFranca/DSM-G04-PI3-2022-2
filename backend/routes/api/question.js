@@ -1,11 +1,14 @@
-const express = require('express');
-const router = express.Router();
-const controller = require('../../controllers/question');
+const express = require('express')
+const router = express.Router()
+const controller = require('../../controllers/question')
+const { authenticate } = require('../../middlewares/authenticationMiddleware')
+const onlyAdmin = authenticate({ onlyAdmin: true })
+const onlyUser = authenticate({ onlyAdmin: false })
 
-router.post('/', controller.create);
-router.get('/', controller.retrieveAll);
-router.get('/:id', controller.retrieveOne);
-router.patch('/:id', controller.update);
-router.delete('/:id', controller.delete);
+router.post('/', onlyAdmin, controller.create)
+router.get('/', onlyUser, controller.retrieveAll)
+router.get('/:id', onlyUser, controller.retrieveOne)
+router.patch('/:id', onlyAdmin, controller.update)
+router.delete('/:id', onlyAdmin, controller.delete)
 
-module.exports = router;
+module.exports = router

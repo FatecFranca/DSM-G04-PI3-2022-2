@@ -5,6 +5,7 @@ const userRoute = require('./api/user');
 const criterionRoute = require('./api/criterion');
 const glossaryRoute = require('./api/glossary');
 const questionRoute = require('./api/question');
+const loginRoute = require('./api/login');
 
 module.exports = {
   /**
@@ -17,5 +18,6 @@ module.exports = {
     app.use('/criterion', criterionRoute);
     app.use('/glossary', glossaryRoute);
     app.use('/question', questionRoute);
+    app.use('/login', loginRoute)
   }
 }

@@ -1,0 +1,92 @@
+<ion-content id="content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="administrador"></ion-back-button>
+      </ion-buttons>
+      <ion-title>PERGUNTAS</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+
+  <div class="according" *ngIf="liberarPerguntas === true ">
+    <ion-accordion-group *ngFor="let res of perguntas; index as i" expand="inset">
+      <ion-accordion>
+        <ion-item slot="header" color="secondary">
+          <ion-label>Questão {{i + 1}}</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          <h3>Pergunta : {{res.enunciation}}</h3>
+          <h3>Ordem : {{res.order}}</h3>
+          <h3>Critério : {{res.criterion.name}}</h3>
+          <h3 *ngFor="let res2  of res.glossary_refs">Glossário : {{res2.entry}}</h3>
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+  </div>
+
+  <div class="botoes">
+    <ion-button *ngIf="liberarPerguntas === false" (click)="mostrarPerguntas()" color="primary" expand="block">
+      Vizualizar perguntas cadastrados</ion-button>
+    <ion-button *ngIf="liberarPerguntas === true " (click)="esconderPerguntas()" color="danger" expand="block">Fechar
+    </ion-button>
+  </div>
+
+  <div>
+
+
+
+  </div>
+
+  <div class="container">
+    <h1>Perguntas</h1>
+
+    <div class="colMain">
+
+      <ion-grid>
+        <ion-row>
+
+          <ion-col>
+            <mat-form-field appearance="fill">
+              <mat-label>Ordem da pergunta</mat-label>
+              <mat-select disableRipple>
+                <mat-option *ngFor="let n of ordemPerguntas" value="{{n}}" (click)="pegaOrdem(n)">{{n}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </ion-col>
+
+          <ion-col>
+            <mat-form-field appearance="fill">
+              <mat-label>Critério da pergunta</mat-label>
+              <mat-select disableRipple>
+                <mat-option *ngFor="let n of criterios" value="{{n}}" (click)="pegaCriterio(n._id)">{{n.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </ion-col>
+
+          <ion-col>
+            <mat-form-field appearance="fill">
+              <mat-label>Palavras com glossário</mat-label>
+              <mat-select [formControl]="select" multiple>
+                <mat-option *ngFor="let res of palavras" [value]="res">{{res.entry}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div class="inputCenter">
+      <ion-input [(ngModel)]="perguntaNg" (ionChange)="pegaPergunta()" type="text" placeholder="Enunciado da pergunta">
+      </ion-input>
+    </div>
+
+    <div>
+      <ion-button (click)="criarPergunta()" [disabled]="liberaBotao"  expand="block">Criar Pergunta </ion-button>
+    </div>
+    <p></p>
+  </div>
+
+</ion-content>
