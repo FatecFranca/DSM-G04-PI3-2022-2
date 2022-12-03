@@ -39,6 +39,7 @@
     "@angular/compiler-cli": "^15.0.0",
     "@angular/language-service": "^15.0.0",
     "@ionic/angular-toolkit": "^6.0.0",
+    "@ionic/lab": "3.2.15",
     "@netlify-builder/deploy": "^5.0.0",
     "@types/jasmine": "~4.0.0",
     "@types/node": "^12.11.1",
